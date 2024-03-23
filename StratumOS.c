@@ -30,6 +30,9 @@ int main() {
             // Extract the command after '/host' keyword
             const char *host_command = input + 6;
             execute_command(host_command);
+        } else if (strncmp(input, "/say ", 5) == 0) {
+            // Print the text after '/say' keyword
+            printf("%s\n", input + 5);
         } else {
             printf("Unknown command: %s\n", input);
         }
