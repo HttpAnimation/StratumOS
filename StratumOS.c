@@ -2,39 +2,46 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char *argv[]) {
-    // Check if there are enough arguments
-    if (argc < 2) {
-        printf("Usage: %s <command>\n", argv[0]);
-        return 1;
-    }
+int main() {
+    char input[1024]; // Buffer to store user input
 
-    // Form the command to be executed
-    char command[1024] = "host ";
-    for (int i = 1; i < argc; ++i) {
-        strcat(command, argv[i]);
-        strcat(command, " ");
-    }
+    // Display the initial prompt
+    printf("/ ");
 
-    // Execute the command based on the platform
-    #ifdef _WIN32
-        system(command);
-    #elif __APPLE__
-        // For macOS, you can use the `system()` function as well
-        system(command);
-    #else
-        // For Linux, you may need to use the `popen()` function
-        FILE *fp = popen(command, "r");
-        if (fp == NULL) {
-            perror("Error executing command");
-            return 1;
+    // Continuously read user input and execute commands
+    while (fgets(input, sizeof(input), stdin) != NULL) {
+        // Remove the newline character at the end of the input
+        input[strcspn(input, "\n")] = '\0';
+
+        // Check if the input is empty
+        if (strlen(input) == 0) {
+            // Display the prompt again
+            printf("/ ");
+            continue;
         }
-        char buffer[1024];
-        while (fgets(buffer, sizeof(buffer), fp) != NULL) {
-            printf("%s", buffer);
-        }
-        pclose(fp);
-    #endif
+
+        // Execute the command
+        #ifdef _WIN32
+            system(input);
+        #elif __APPLE__
+            system(input);
+        #else
+            // For Linux, you may need to use the `popen()` function
+            FILE *fp = popen(input, "r");
+            if (fp == NULL) {
+                perror("Error executing command");
+            } else {
+                char buffer[1024];
+                while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+                    printf("%s", buffer);
+                }
+                pclose(fp);
+            }
+        #endif
+
+        // Display the prompt again
+        printf("/ ");
+    }
 
     return 0;
 }
