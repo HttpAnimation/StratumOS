@@ -1,5 +1,5 @@
 #!/bin/bash
-
+clear
 # Create Builds folder if it doesn't exist
 mkdir -p Builds
 
