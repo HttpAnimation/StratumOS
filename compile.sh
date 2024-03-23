@@ -11,7 +11,7 @@ build_folder="Builds/$current_datetime"
 mkdir -p "$build_folder"
 
 # Compile c scripts into the build folder
-gcc -o "$build_folder/StratumOS" StratumOS.c
+gcc -o "$build_folder/StratumOS" -o StratumOS.c
 
 # Copy files into the build folder
 cp * "$build_folder"
