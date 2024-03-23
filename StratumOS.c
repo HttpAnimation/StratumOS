@@ -11,7 +11,6 @@ void execute_command(const char *command) {
 
 // Signal handler function
 void handle_sigint(int sig) {
-    printf("\nCtrl+C detected. Use 'exitSO()' to quit.\n");
 }
 
 int main() {
