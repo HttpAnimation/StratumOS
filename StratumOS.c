@@ -20,24 +20,8 @@ int main() {
             continue;
         }
 
-        // Execute the command
-        #ifdef _WIN32
-            system(input);
-        #elif __APPLE__
-            system(input);
-        #else
-            // For Linux, you may need to use the `popen()` function
-            FILE *fp = popen(input, "r");
-            if (fp == NULL) {
-                perror("Error executing command");
-            } else {
-                char buffer[1024];
-                while (fgets(buffer, sizeof(buffer), fp) != NULL) {
-                    printf("%s", buffer);
-                }
-                pclose(fp);
-            }
-        #endif
+        // Execute the command directly
+        system(input);
 
         // Display the prompt again
         printf("/ ");
