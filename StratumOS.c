@@ -11,15 +11,15 @@ void execute_command(const char *command) {
 int main() {
     char input[MAX_COMMAND_LENGTH];
     system("clear");
-    printf("Welcome to Custom OS Terminal!\n");
-    printf("Type 'exit' to quit.\n");
+    printf("Welcome to StratumOS!\n");
+    printf("Type 'exitSO()' to quit.\n");
 
     while (1) {
         printf(">> ");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = '\0'; // remove trailing newline
         
-        if (strcmp(input, "exit") == 0) {
+        if (strcmp(input, "exitSO()") == 0) {
             printf("Exiting...\n");
             break;
         } else if (strncmp(input, "/host ", 6) == 0) {
