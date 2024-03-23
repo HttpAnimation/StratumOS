@@ -22,9 +22,9 @@ int main() {
         if (strcmp(input, "exit") == 0) {
             printf("Exiting...\n");
             break;
-        } else if (strncmp(input, "host ", 5) == 0) {
-            // Extract the command after 'host' keyword
-            const char *host_command = input + 5;
+        } else if (strncmp(input, "/host ", 6) == 0) {
+            // Extract the command after '/host' keyword
+            const char *host_command = input + 6;
             execute_command(host_command);
         } else {
             printf("Unknown command: %s\n", input);
@@ -33,3 +33,4 @@ int main() {
 
     return 0;
 }
+
