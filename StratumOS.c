@@ -9,15 +9,13 @@ void execute_command(const char *command) {
 }
 
 int main() {
-    // Clear the screen
-    system("clear");
-
     char input[MAX_COMMAND_LENGTH];
 
     printf("Welcome to Custom OS Terminal!\n");
     printf("Type 'exit' to quit.\n");
 
     while (1) {
+        system("clear");
         printf(">> ");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = '\0'; // remove trailing newline
@@ -36,3 +34,4 @@ int main() {
 
     return 0;
 }
+
