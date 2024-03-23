@@ -2,35 +2,33 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_COMMAND_LENGTH 1000
+
+void execute_command(const char *command) {
+    system(command);
+}
+
 int main() {
-    char input[1024]; // Buffer to store user input
+    char input[MAX_COMMAND_LENGTH];
 
-    // Display the initial prompt
-    printf("/ ");
+    printf("Welcome to Custom OS Terminal!\n");
+    printf("Type 'exit' to quit.\n");
 
-    // Continuously read user input and execute commands
-    while (fgets(input, sizeof(input), stdin) != NULL) {
-        // Remove the newline character at the end of the input
-        input[strcspn(input, "\n")] = '\0';
-
-        // Check if the input is empty
-        if (strlen(input) == 0) {
-            // Display the prompt again
-            printf("/ ");
-            continue;
-        }
-
-        // Check if the input starts with '/'
-        if (input[0] == '/') {
-            // Execute the command within the program
-            system(input + 1); // Skip the first character '/'
+    while (1) {
+        printf(">> ");
+        fgets(input, sizeof(input), stdin);
+        input[strcspn(input, "\n")] = '\0'; // remove trailing newline
+        
+        if (strcmp(input, "exit") == 0) {
+            printf("Exiting...\n");
+            break;
+        } else if (strncmp(input, "host ", 5) == 0) {
+            // Extract the command after 'host' keyword
+            const char *host_command = input + 5;
+            execute_command(host_command);
         } else {
-            // Execute the command directly
-            system(input);
+            printf("Unknown command: %s\n", input);
         }
-
-        // Display the prompt again
-        printf("/ ");
     }
 
     return 0;
