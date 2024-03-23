@@ -21,6 +21,7 @@ int main() {
         
         if (strcmp(input, "exitSO()") == 0) {
             printf("Exiting...\n");
+            system("clear");
             break;
         } else if (strncmp(input, "/host ", 6) == 0) {
             // Extract the command after '/host' keyword
