@@ -23,6 +23,9 @@ int main() {
             printf("Exiting...\n");
             system("clear");
             break;
+        } else if (strcmp(input, "/clear") == 0) {
+            // Clear the display
+            system("clear");
         } else if (strncmp(input, "/host ", 6) == 0) {
             // Extract the command after '/host' keyword
             const char *host_command = input + 6;
