@@ -9,6 +9,9 @@ void execute_command(const char *command) {
 }
 
 int main() {
+    // Clear the screen
+    system("clear");
+
     char input[MAX_COMMAND_LENGTH];
 
     printf("Welcome to Custom OS Terminal!\n");
@@ -33,4 +36,3 @@ int main() {
 
     return 0;
 }
-
