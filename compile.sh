@@ -11,10 +11,10 @@ build_folder="Builds/$current_datetime"
 mkdir -p "$build_folder"
 
 # Compile c scripts into the build folder
-gcc -o StratumOS.c -o "$build_folder/StratumOS" 
+gcc -o "$build_folder/StratumOS" StratumOS.c 
 
 # Copy files into the build folder
-cp * "$build_folder"
+cp -r * "$build_folder"
 
 # Create a Version.ini file with the current date and time
 echo "$current_datetime" > "$build_folder/Version.ini"
