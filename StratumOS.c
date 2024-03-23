@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #define MAX_COMMAND_LENGTH 1000
 
@@ -8,11 +9,19 @@ void execute_command(const char *command) {
     system(command);
 }
 
+// Signal handler function
+void handle_sigint(int sig) {
+    printf("\nCtrl+C detected. Use 'exitSO()' to quit.\n");
+}
+
 int main() {
     char input[MAX_COMMAND_LENGTH];
     system("clear");
     printf("Welcome to StratumOS!\n");
     printf("Type 'exitSO()' to quit.\n");
+
+    // Set up signal handler for SIGINT
+    signal(SIGINT, handle_sigint);
 
     while (1) {
         printf(">> ");
