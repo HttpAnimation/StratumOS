@@ -1,5 +1,6 @@
 #!/bin/bash
 clear
+
 # Create Builds folder if it doesn't exist
 mkdir -p Builds
 
@@ -14,7 +15,7 @@ mkdir -p "$build_folder"
 gcc -o "$build_folder/StratumOS" StratumOS.c 
 
 # Copy files into the build folder
-cp -r * "$build_folder"
+cp * "$build_folder"
 
 # Create a Version.ini file with the current date and time
 echo "$current_datetime" > "$build_folder/Version.ini"
